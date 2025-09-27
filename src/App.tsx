@@ -8,15 +8,15 @@ function App() {
 
   return (
     <div>
-      <BrowserRouter basename='/'>
-        <Routes>
-          <Route path='/' element={<Body />}>
-            <Route index element={<Navigate to="/candidate" replace />} />
-            <Route path='/interviewer' element={<InterviewerPage />} />
-            <Route path='/candidate' element={<CandidatePage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+        <BrowserRouter basename='/'>
+          <Routes>
+            <Route path='/' element={<Body />}>
+              <Route index element={<Navigate to="/candidate" replace />} />
+              <Route path='/interviewer' element={<InterviewerPage />} />
+              <Route path='/candidate' element={<CandidatePage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
     </div>
   )
 }

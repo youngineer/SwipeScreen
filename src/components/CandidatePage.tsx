@@ -1,10 +1,17 @@
 import React, { type FC, type JSX } from 'react';
+import candidateServices from '../services/candidateServices';
+import { motion } from 'framer-motion';
 
-const handleResume = async (e: React.ChangeEvent<HTMLInputElement>) => {
+const handleResume = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
   const file = e.target.files?.[0];
 
   if (file) {
-    console.log('Selected file:', file);
+    try {
+      const result = await candidateServices.parseResume(file);
+      console.log(result)
+    } catch (error) {
+      console.error('Error parsing resume:', error);
+    }
   } else {
     console.log('No file selected');
   }
@@ -12,9 +19,10 @@ const handleResume = async (e: React.ChangeEvent<HTMLInputElement>) => {
 
 const CandidatePage: FC = (): JSX.Element => {
   return (
-    <div>
-      <input type="file" className="file-input file-input-xl" onChange={handleResume} />
-    </div>
+    <fieldset className="fieldset">
+      <input type="file" className="file-input file-input-xl" />
+      <label className="label">Only pdf and docx allowed</label>
+    </fieldset>
   );
 };
 
